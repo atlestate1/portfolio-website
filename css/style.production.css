@@ -1,27 +1,27 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 /*Colors background = slate gray(#708090) logo = soft blue(#b9c1bd) */
 
-:root {
---primary-color: #708090;
---secondary-color: #b9c1bd;
---primary-weight: 300;
---text-color: black;
-}
-
-body      { background-color: var(--primary-color);
-            color: var(--text-color);
+body      { background-color: #708090;
+            color: black;
             font-family: 'open sans', sans-serif;
-            font-weight: var(--primary-weight);
+            font-weight: 300;
             font-size: 18px;
             line-height: 1.8;
             text-align: center;}
 
-header    { background-color: var(--secondary-color);
-            color: var(--text-color);
+header    { background-color: #b9c1bd;
+            color: black;
             text-align: center;
             font-family: open sans condensed, sans-serif;
-            font-weight: var(--primary-weight);}
+            font-weight: 300;}
 
-footer     { background-color: var(--secondary-color);
+footer     { background-color: #b9c1bd;
              text-align: center;}
 
 h1         { font-size: 32px;
@@ -30,7 +30,7 @@ h1         { font-size: 32px;
 
 nav        { font-size: 20px;
              line-height: 1.3;
-             color: var(--text-color);}
+             color: black;}
 
 a span     { color: #001b00;}
 
@@ -64,6 +64,8 @@ button, .button    { /*overwrites browser defaults and resets border*/
                      /*gives button a bottom border with a width of 2px, a
                      type of solid, and a color in rgba format*/
                      border-bottom: 2px solid rgba (0, 0, 0, 0.3);
+                     -webkit-transition: 0.2s opacity;
+                     -o-transition: 0.2s opacity;
                      transition: 0.2s opacity;}
 
 button:hover, button:focus  { /*lets the mouse appear as a hand when
@@ -88,22 +90,27 @@ textarea    { width: 100%;
                         border-radius: 80%;}
 
 .page-footer         { clear: both;
+                       display: -webkit-box;
+                       display: -ms-flexbox;
                        display: flex;
                        text-align: center;
-                       flex-direction: column;}
+                       -webkit-box-orient: vertical;
+                       -webkit-box-direction: normal;
+                           -ms-flex-direction: column;
+                               flex-direction: column;}
 
 .profile              { max-width: 700px;
                         margin: 0 auto;}
 
-*                     { box-sizing: border-box;}
+*                     { -webkit-box-sizing: border-box; box-sizing: border-box;}
 
-.page-header        { display: flex;
+.page-header        { display: -webkit-box; display: -ms-flexbox; display: flex;
                       width: 100%;
                       padding: 20px;}
 
-.page-header_item      { flex: 0 1 200px;}
+.page-header_item      { -webkit-box-flex: 0; -ms-flex: 0 1 200px; flex: 0 1 200px;}
 
-.page-header_item:last-child  { flex-grow: 1;
+.page-header_item:last-child  { -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1;
                                 text-align: right;}
 
 .navigation-list li           { display: inline-block;
@@ -113,7 +120,8 @@ textarea    { width: 100%;
 
 .my_list                      { list-style-type: none;}
 
-.grid       { display: grid;
+.grid       { display: -ms-grid; display: grid;
+              -ms-grid-columns: 1fr 20px 1fr 20px 1fr;
               grid-template-columns: 1fr 1fr 1fr;
               grid-gap: 20px;}
 
@@ -125,6 +133,16 @@ textarea    { width: 100%;
 table       { margin-left: auto;
               margin-right: auto;}
 
+@-webkit-keyframes color-change {
+          from {
+            fill: #edc655;
+          }
+          to   {
+            fill: #f76414;
+          }
+
+}
+
 @keyframes color-change {
           from {
             fill: #edc655;
@@ -135,32 +153,59 @@ table       { margin-left: auto;
 
 }
 
-.sun    {animation: 4s color-change infinite alternate linear;}
+.sun    {-webkit-animation: 4s color-change infinite alternate linear;animation: 4s color-change infinite alternate linear;}
+
+@-webkit-keyframes cloud-move {
+          from {
+            -webkit-transform: translate(0, 50px);
+                    transform: translate(0, 50px);
+          }
+          to {
+            -webkit-transform: translate(200px, 50px);
+                    transform: translate(200px, 50px);
+          }
+}
 
 @keyframes cloud-move {
           from {
-            transform: translate(0, 50px);
+            -webkit-transform: translate(0, 50px);
+                    transform: translate(0, 50px);
           }
           to {
-            transform: translate(200px, 50px);
+            -webkit-transform: translate(200px, 50px);
+                    transform: translate(200px, 50px);
           }
 }
 
-.cloud-front  {animation: 30s cloud-move infinite alternate linear;}
+.cloud-front  {-webkit-animation: 30s cloud-move infinite alternate linear;animation: 30s cloud-move infinite alternate linear;}
+
+@-webkit-keyframes cloud-move-reverse {
+          from {
+            -webkit-transform: translate(446px, 48px);
+                    transform: translate(446px, 48px);
+          }
+          to {
+            -webkit-transform: translate(100px, 48px);
+                    transform: translate(100px, 48px);
+          }
+}
 
 @keyframes cloud-move-reverse {
           from {
-            transform: translate(446px, 48px);
+            -webkit-transform: translate(446px, 48px);
+                    transform: translate(446px, 48px);
           }
           to {
-            transform: translate(100px, 48px);
+            -webkit-transform: translate(100px, 48px);
+                    transform: translate(100px, 48px);
           }
 }
 
-.cloud-back  {animation: 34s cloud-move-reverse infinite alternate linear;}
+.cloud-back  {-webkit-animation: 34s cloud-move-reverse infinite alternate linear;animation: 34s cloud-move-reverse infinite alternate linear;}
 
 @media all and (max-width: 500px) {
                 .grid {
+                  -ms-grid-columns: 1fr;
                   grid-template-columns: 1fr;
                   grid-gap: 10px;
                 }
@@ -175,6 +220,7 @@ table       { margin-left: auto;
 
 @media all and (min-width: 500px) and (max-width: 750px){
                 .grid {
+                  -ms-grid-columns: 1fr 10px 1fr;
                   grid-template-columns: 1fr 1fr;
                   grid-gap: 10px;
                 }
